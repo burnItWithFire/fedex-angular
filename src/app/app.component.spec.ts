@@ -13,6 +13,9 @@ describe('AppComponent', () => {
       ],
     }).compileComponents();
   });
+  afterAll(async () => {
+    localStorage.removeItem('covidPanel')
+  })
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -26,10 +29,18 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('search-app');
   });
 
-  it('should render title', () => {
+  xit('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain('search-app app is running!');
   });
+  it('should properly render collapsable panel', () => {
+    const fixture = TestBed.createComponent(AppComponent)
+    const app = fixture.componentInstance;
+    app.collapse();
+    expect(app.closeCovidInfoPanel).toEqual(true);
+    let localStorageItem = localStorage.getItem('covidPanel');
+    expect(localStorageItem).toEqual('true');
+  })
 });

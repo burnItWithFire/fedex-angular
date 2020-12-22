@@ -63,8 +63,4 @@ export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.responseReceived.emit(this.queryResponse$);
   }
 
-  showResults() {
-    console.log('test')
-  }
-
 }
